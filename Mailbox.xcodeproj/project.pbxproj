@@ -15,6 +15,7 @@
 		4D1A20E21BBB89D7003FC2DD /* MailboxTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1A20E11BBB89D7003FC2DD /* MailboxTests.swift */; };
 		4D1A20ED1BBB89D7003FC2DD /* MailboxUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1A20EC1BBB89D7003FC2DD /* MailboxUITests.swift */; };
 		4D1A20FB1BBC7EA2003FC2DD /* MailboxViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1A20FA1BBC7EA2003FC2DD /* MailboxViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		4DA71A541BBFA90100258FC2 /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA71A531BBFA90100258FC2 /* Common.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		4D1A20EC1BBB89D7003FC2DD /* MailboxUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailboxUITests.swift; sourceTree = "<group>"; };
 		4D1A20EE1BBB89D7003FC2DD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4D1A20FA1BBC7EA2003FC2DD /* MailboxViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MailboxViewController.swift; sourceTree = "<group>"; };
+		4DA71A531BBFA90100258FC2 /* Common.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +107,7 @@
 				4D1A20FA1BBC7EA2003FC2DD /* MailboxViewController.swift */,
 				4D1A20D31BBB89D7003FC2DD /* Assets.xcassets */,
 				4D1A20D51BBB89D7003FC2DD /* LaunchScreen.storyboard */,
+				4DA71A531BBFA90100258FC2 /* Common.swift */,
 				4D1A20D81BBB89D7003FC2DD /* Info.plist */,
 			);
 			path = Mailbox;
@@ -259,6 +262,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4DA71A541BBFA90100258FC2 /* Common.swift in Sources */,
 				4D1A20CF1BBB89D7003FC2DD /* ViewController.swift in Sources */,
 				4D1A20CD1BBB89D7003FC2DD /* AppDelegate.swift in Sources */,
 				4D1A20FB1BBC7EA2003FC2DD /* MailboxViewController.swift in Sources */,
