@@ -158,21 +158,26 @@
                                                             <action selector="onSegmentedControlTap:" destination="BYZ-38-t0r" eventType="valueChanged" id="Xy7-3r-YM9"/>
                                                         </connections>
                                                     </segmentedControl>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="nic-gb-4h3">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" id="nic-gb-4h3">
                                                         <rect key="frame" x="284" y="49" width="56" height="22"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <color key="tintColor" red="0.27450980390000002" green="0.65490196079999996" blue="0.82352941180000006" alpha="1" colorSpace="calibratedRGB"/>
                                                         <state key="normal" image="composeBlue"/>
+                                                        <state key="highlighted" image="composeGreen"/>
                                                         <connections>
                                                             <action selector="onComposeTap:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Z7e-JJ-bTK"/>
                                                         </connections>
                                                     </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="pNQ-gZ-WYk">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" id="pNQ-gZ-WYk">
                                                         <rect key="frame" x="19" y="47" width="64" height="28"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <state key="normal" image="menuBlue">
                                                             <color key="titleColor" red="0.27450980390000002" green="0.65490196079999996" blue="0.82352941180000006" alpha="1" colorSpace="calibratedRGB"/>
                                                         </state>
+                                                        <state key="selected" image="menuYellow"/>
+                                                        <connections>
+                                                            <action selector="onMenuButtonPress:" destination="BYZ-38-t0r" eventType="touchUpInside" id="1Ke-k3-b2Q"/>
+                                                        </connections>
                                                     </button>
                                                 </subviews>
                                             </view>
@@ -387,6 +392,7 @@
         <image name="archive_icon" width="25" height="25"/>
         <image name="archive_nav_icon" width="25" height="20"/>
         <image name="composeBlue" width="22" height="22"/>
+        <image name="composeGreen" width="22" height="22"/>
         <image name="composebottom" width="320" height="47"/>
         <image name="delete_icon" width="25" height="25"/>
         <image name="feed2" width="320" height="1115"/>
@@ -398,6 +404,7 @@
         <image name="mail_nav_icon" width="25" height="20"/>
         <image name="menu" width="320" height="568"/>
         <image name="menuBlue" width="21" height="13"/>
+        <image name="menuYellow" width="21" height="13"/>
         <image name="message" width="320" height="86"/>
         <image name="nav" width="320" height="65"/>
         <image name="reschedule" width="320" height="568"/>

@@ -315,7 +315,12 @@ class MailboxViewController: UIViewController {
             
             //animate in archive
             
-            composeIcon.setImage(UIImage(named: "composeGreen@2x.png"), forState: UIControlState.Normal)
+            let composeImage = UIImage(named: "composeGreen") as UIImage!
+            self.composeIcon.setImage(composeImage, forState: .Normal)
+            
+            let menuImage = UIImage(named: "menuGreen") as UIImage!
+            self.menuIcon.setImage(menuImage, forState: .Normal)
+
             archivedItems.center.x = archivedItemsOriginalCenter.x + 320
             
             UIView.animateWithDuration(0.4) { () -> Void in
@@ -326,10 +331,13 @@ class MailboxViewController: UIViewController {
             }
             
         } else if segmentedControl.selectedSegmentIndex == 0 {
-           
+            laterItems.alpha = 1
             //animate in LATER items screen
+            let composeImage = UIImage(named: "composeYellow") as UIImage!
+            self.composeIcon.setImage(composeImage, forState: .Normal)
             
-            composeIcon.setImage(UIImage(named: "composeYellow@2x.png"), forState: UIControlState.Normal)
+            let menuImage = UIImage(named: "menuYellow") as UIImage!
+            self.menuIcon.setImage(menuImage, forState: .Normal)
             
             UIView.animateWithDuration(0.4) { () -> Void in
                 self.laterItems.center.x = self.laterItemsOriginalCenter.x
@@ -339,8 +347,13 @@ class MailboxViewController: UIViewController {
             }
 
         } else {
-            
+
             //make sure it's the mailbox
+            let composeImage = UIImage(named: "composeBlue") as UIImage!
+            self.composeIcon.setImage(composeImage, forState: .Normal)
+            
+            let menuImage = UIImage(named: "menuBlue") as UIImage!
+            self.menuIcon.setImage(menuImage, forState: .Normal)
             
             UIView.animateWithDuration(0.4) { () -> Void in
                 self.scrollView.center.x = self.scrollViewOriginalCenter.x
@@ -457,9 +470,16 @@ class MailboxViewController: UIViewController {
     }
     
     func onEdgePan(edgeGesture: UIScreenEdgePanGestureRecognizer) {
-        print("text")
-       // let alphaChange = convertValue(translation.x, r1Min: 20, r1Max: 60, r2Min: 0, r2Max: 1)
-        laterItems.alpha = 0
+        
+        if segmentedControl.selectedSegmentIndex == 1 {
+            laterItems.alpha = 0
+        } else if segmentedControl.selectedSegmentIndex == 2 {
+            scrollView.alpha = 0
+            laterItems.alpha = 0
+
+        } else if segmentedControl.selectedSegmentIndex == 0 {
+            laterItems.alpha = 1
+        }
         menuView.alpha = 1
         
         let layer = contentView.layer
@@ -467,33 +487,51 @@ class MailboxViewController: UIViewController {
         layer.shadowOffset = CGSize(width: -8, height: -3)
         layer.shadowOpacity = 0.2
         layer.shadowColor = UIColor.blackColor().CGColor
-
-        let location = edgeGesture.locationInView(view)
+        
         let translation = edgeGesture.translationInView(view)
         let velocity = edgeGesture.velocityInView(view)
         
         
         if edgeGesture.state == UIGestureRecognizerState.Began {
-        
+            
         } else if edgeGesture.state == UIGestureRecognizerState.Changed {
             contentView.center.x = contentViewOriginalCenter.x + translation.x
         } else if edgeGesture.state == UIGestureRecognizerState.Ended {
             if velocity.x > 0 {
-                print("changed to right")
-               contentView2.userInteractionEnabled = false
+                contentView2.userInteractionEnabled = false
                 let menuReturn = UIPanGestureRecognizer(target: self, action: "onMenuReturn:")
                 contentView.addGestureRecognizer(menuReturn)
                 UIView.animateWithDuration(0.3, delay: 0, options: [], animations: { () -> Void in
                     self.contentView.center.x = self.contentViewOriginalCenter.x + 285
                     }, completion: nil)
             } else if velocity.x < 0 {
-                print("changed to left")
                 UIView.animateWithDuration(0.3, delay: 0, options: [], animations: { () -> Void in
                     self.contentView.center.x = self.contentViewOriginalCenter.x
                     }, completion: nil)
                 contentView2.userInteractionEnabled = true
             }
         }
+        
+    }
+    @IBAction func onMenuButtonPress(sender: AnyObject) {
+        
+        if segmentedControl.selectedSegmentIndex == 1 {
+        laterItems.alpha = 0
+        } else if segmentedControl.selectedSegmentIndex == 2 {
+            scrollView.alpha = 0
+            laterItems.alpha = 0
+
+        } else if segmentedControl.selectedSegmentIndex == 0 {
+            laterItems.alpha = 1
+        }
+        menuView.alpha = 1
+
+        contentView2.userInteractionEnabled = false
+        let menuReturn = UIPanGestureRecognizer(target: self, action: "onMenuReturn:")
+        contentView.addGestureRecognizer(menuReturn)
+        UIView.animateWithDuration(0.3, delay: 0, options: [], animations: { () -> Void in
+            self.contentView.center.x = self.contentViewOriginalCenter.x + 285
+            }, completion: nil)
         
     }
     
@@ -502,12 +540,12 @@ class MailboxViewController: UIViewController {
         let velocity = menuReturn.velocityInView(view)
         
         if menuReturn.state == UIGestureRecognizerState.Began {
-        
+            
         } else if menuReturn.state == UIGestureRecognizerState.Changed {
             contentView2.center.x = contentViewOriginalCenter.x + translation.x
         } else if menuReturn.state == UIGestureRecognizerState.Ended {
             if velocity.x > 0 {
-               contentView2.userInteractionEnabled = false
+                contentView2.userInteractionEnabled = false
                 UIView.animateWithDuration(0.3, delay: 0, options: [], animations: { () -> Void in
                     self.contentView2.center.x = self.contentViewOriginalCenter.x
                     }, completion: nil)
@@ -515,20 +553,48 @@ class MailboxViewController: UIViewController {
                 UIView.animateWithDuration(0.3, delay: 0, options: [], animations: { () -> Void in
                     self.contentView.center.x = self.contentViewOriginalCenter.x
                     self.contentView2.center.x = self.contentViewOriginalCenter.x
-
-                    print(self.contentViewOriginalCenter)
                     }, completion: nil)
-              contentView.removeGestureRecognizer(menuReturn)
+                contentView.removeGestureRecognizer(menuReturn)
                 contentView2.userInteractionEnabled = true
                 delay(1) {
                     self.laterItems.alpha = 1
                     self.menuView.alpha = 0
+                    self.scrollView.alpha = 1
                 }
             }
         }
         
     }
     
+    override func motionEnded(_ motion: UIEventSubtype,
+        withEvent event: UIEvent?) {
+            print("shaken")
+              let undoAlertController = UIAlertController(title: "Undo action?", message: "Would you like to undo that?", preferredStyle: .Alert)
+            let undoAction = UIAlertAction(title: "Undo", style: .Default) { (action) in
+                // handle response here.
+                
+                self.leftIcons.center = self.leftIconsOriginalCenter
+                self.rightIcons.center = self.rightIconsOriginalCenter
+                
+                UIView.animateWithDuration(0.4, delay: 0.2, options: [], animations: { () -> Void in
+                    self.feedImage.center.y = self.feedImageOriginalCenter.y
+                    }, completion: nil)
+                
+                UIView.animateWithDuration(0.1, animations: {
+                    self.message.center.x = self.messageOriginalCenter.x - 1
+                    self.leftIcons.center.x += 320
+                })
+            }
+    
+            let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel) { (action) in
+                // handle response here.
+            }
+            undoAlertController.addAction(cancelAction)
+            undoAlertController.addAction(undoAction)
+            presentViewController(undoAlertController, animated: true, completion: nil)
+            
+    }
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
